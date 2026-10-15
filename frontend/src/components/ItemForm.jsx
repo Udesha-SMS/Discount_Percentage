@@ -4,6 +4,7 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
   const [formData, setFormData] = useState(
     initialValues || {
       name: "",
+      discountPercentage: "",
       category: "",
       price: "",
       description: "",
@@ -21,6 +22,7 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
     onSubmit({
       ...formData,
       price: Number(formData.price),
+      discountPercentage: Number(formData.discountPercentage),
     });
   };
 
@@ -30,6 +32,17 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
 
       <label>Item Name</label>
       <input name="name" value={formData.name} onChange={handleChange} required />
+
+      <label>Discount Percentage</label>
+      <input
+        type="number"
+        name="discountPercentage"
+        min="0"
+        max="100"
+        value={formData.discountPercentage ?? ""}
+        onChange={handleChange}
+        required
+      />
 
       <label>Category</label>
       <input name="category" value={formData.category} onChange={handleChange} required />
